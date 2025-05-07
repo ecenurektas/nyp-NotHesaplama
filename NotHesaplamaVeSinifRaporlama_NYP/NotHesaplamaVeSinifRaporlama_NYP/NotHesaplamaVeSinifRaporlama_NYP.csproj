@@ -46,14 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ogrenci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ogrenci.Designer.cs">
+      <DependentUpon>ogrenci.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ogretmen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ogretmen.Designer.cs">
+      <DependentUpon>ogretmen.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ogrenci.resx">
+      <DependentUpon>ogrenci.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

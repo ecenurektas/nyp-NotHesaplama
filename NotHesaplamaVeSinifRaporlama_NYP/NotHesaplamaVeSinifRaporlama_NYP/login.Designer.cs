@@ -1,6 +1,6 @@
 ﻿namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    partial class Form1
+    partial class login
     {
         /// <summary>
         ///Gerekli tasarımcı değişkeni.

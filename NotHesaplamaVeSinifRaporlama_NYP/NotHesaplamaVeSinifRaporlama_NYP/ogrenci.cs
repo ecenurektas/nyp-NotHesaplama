@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class Form2 : Form
+    public partial class ogrenci : Form
     {
-        public Form2()
+        public ogrenci()
         {
             InitializeComponent();
         }
