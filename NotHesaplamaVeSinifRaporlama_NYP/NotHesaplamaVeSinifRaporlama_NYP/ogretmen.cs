@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NotHesaplamaVeSinifRaporlama_NYP;
 using OrnekProje;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
@@ -19,27 +21,172 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public ogretmen()
         {
             InitializeComponent();
-            this.Load += ogretmen_Load;
-
         }
-
+        private string ogrGorevlisiID="2";
         private void ogretmen_Load(object sender, EventArgs e)
         {
+            comboBox1.SelectedIndex = 0;
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT KitapAdi FROM Kitaplar", Database.Connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM OgretimGorevlisi WHERE OgretimGrID="+this.ogrGorevlisiID, Database.Connection);
                 SqlDataReader reader = cmd.ExecuteReader();
-
                 while (reader.Read())
                 {
-                    comboBox1.Items.Add(reader["KitapAdi"].ToString());
+                    textBox1.Text=reader["AdSoyad"].ToString();
                 }
-
                 reader.Close();
+
+                SqlCommand cmd2 = new SqlCommand("SELECT * FROM OgretimGorevlisiDersleri WHERE OgretimGrID="+this.ogrGorevlisiID, Database.Connection);
+                SqlDataReader reader2 = cmd2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    comboBox1.Items.Add(reader2["DersID"].ToString());
+                }
+                reader2.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ComboBox veri yüklenemedi: " + ex.Message);
+            }
+
+        }
+        private string secilen = "";
+        private SqlDataAdapter adapter;
+        private DataTable tablo;
+        private void harfNotuHesapla()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    double vize = Convert.ToDouble(row.Cells["Vize"].Value);
+                    double final = Convert.ToDouble(row.Cells["Final"].Value);
+                    double ortalama = vize * 0.4 + final * 0.6;
+                    if (ortalama > 90)
+                    {
+                        row.Cells["HarfNotu"].Value = "AA";
+                    }
+                    else if (ortalama > 85)
+                    {
+                        row.Cells["HarfNotu"].Value = "BA";
+                    }
+                    else if (ortalama > 75)
+                    {
+                        row.Cells["HarfNotu"].Value = "BB";
+                    }
+                    else if (ortalama > 65)
+                    {
+                        row.Cells["HarfNotu"].Value = "CB";
+                    }
+                    else if (ortalama > 60)
+                    {
+                        row.Cells["HarfNotu"].Value = "CC";
+                    }
+                    else if (ortalama > 55)
+                    {
+                        row.Cells["HarfNotu"].Value = "DC";
+                    }
+                    else if (ortalama > 50)
+                    {
+                        row.Cells["HarfNotu"].Value = "DD";
+                    }
+                    else if (ortalama > 40)
+                    {
+                        row.Cells["HarfNotu"].Value = "FD";
+                    }
+                    else
+                    {
+                        row.Cells["HarfNotu"].Value = "FF";
+                    }
+                }
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                SqlCommand cmd1 = new SqlCommand("SELECT * FROM Dersler WHERE DersID = @ad", Database.Connection);
+                cmd1.Parameters.AddWithValue("@ad", comboBox1.SelectedItem.ToString());
+                SqlDataReader reader1 = cmd1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    this.secilen = reader1["DersID"].ToString();
+                }
+                reader1.Close();
+                if (Database.Connection.State != ConnectionState.Open)
+                    Database.Connection.Open();
+                SqlCommand komut = new SqlCommand("SELECT * FROM Notlar WHERE DersID = @id", Database.Connection);
+                komut.Parameters.AddWithValue("@id", this.secilen);
+
+                this.adapter = new SqlDataAdapter(komut);
+                this.tablo = new DataTable();
+                adapter.Fill(tablo);
+                dataGridView1.DataSource = tablo;
+                dataGridView1.ReadOnly = false;
+                dataGridView1.Columns["Vize"].ReadOnly = false;
+                dataGridView1.Columns["Final"].ReadOnly = false;
+                dataGridView1.Columns["OgrenciID"].ReadOnly = true;
+                dataGridView1.Columns["DersID"].ReadOnly = true;
+                dataGridView1.Columns["HarfNotu"].ReadOnly = true;
+                harfNotuHesapla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int toplamVize = 0;
+                int toplamFinal = 0;
+                int sayac = 0;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    int vize, final;
+
+                    // Vize değeri
+                    if (row.Cells["Vize"].Value != null && int.TryParse(row.Cells["Vize"].Value.ToString(), out vize))
+                    {
+                        toplamVize += vize;
+                    }
+
+                    // Final değeri
+                    if (row.Cells["Final"].Value != null && int.TryParse(row.Cells["Final"].Value.ToString(), out final))
+                    {
+                        toplamFinal += final;
+                    }
+
+                    sayac++; // Geçerli bir satır sayısı
+                }
+
+                if (sayac > 0)
+                {
+                    double ortVize = (double)toplamVize / sayac;
+                    double ortFinal = (double)toplamFinal / sayac;
+
+                    textBox2.Text=("Vize Ortalaması: " + ortVize.ToString("0.00") +
+                                    "\n\rFinal Ortalaması: " + ortFinal.ToString("0.00"));
+                }
+                else
+                {
+                    textBox2.Text = ("Ortalama hesaplanacak veri yok.");
+                }
+                harfNotuHesapla();
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                this.adapter.Update(this.tablo); // Veritabanındaki değişiklikleri kaydeder
+                MessageBox.Show("Değişiklikler kaydedildi.");
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
             }
         }
     }
