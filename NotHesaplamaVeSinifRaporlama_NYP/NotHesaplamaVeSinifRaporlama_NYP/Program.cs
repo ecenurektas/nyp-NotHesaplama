@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NotHesaplamaVeSinifRaporlama_NYP;
+using OrnekProje;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
@@ -16,6 +19,16 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            try
+            {
+                Database.InitializeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Veritabanına bağlanılamadı: " + ex.Message);
+                return;
+            }
+
             Application.Run(new login());
         }
     }
