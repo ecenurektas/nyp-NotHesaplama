@@ -27,5 +27,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             ogretmen ogretmenForm = new ogretmen();
             ogretmenForm.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ogrenci ogrenciForm = new ogrenci();
+            ogrenciForm.Show();
+        }
     }
 }
