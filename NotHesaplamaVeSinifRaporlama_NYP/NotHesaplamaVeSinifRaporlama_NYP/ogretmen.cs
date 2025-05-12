@@ -130,57 +130,56 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 dataGridView1.Columns["DersID"].ReadOnly = true;
                 dataGridView1.Columns["HarfNotu"].ReadOnly = true;
                 harfNotuHesapla();
+                this.vizeFinalOrt();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hata: " + ex.Message);
             }
         }
+        private void vizeFinalOrt()
+        {
+            int toplamVize = 0;
+            int toplamFinal = 0;
+            int sayac = 0;
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+                int vize, final;
+                if (row.Cells["Vize"].Value != null && int.TryParse(row.Cells["Vize"].Value.ToString(), out vize))
+                {
+                    toplamVize += vize;
+                }
+                if (row.Cells["Final"].Value != null && int.TryParse(row.Cells["Final"].Value.ToString(), out final))
+                {
+                    toplamFinal += final;
+                }
+
+                sayac++;
+            }
+
+            if (sayac > 0)
+            {
+                double ortVize = (double)toplamVize / sayac;
+                double ortFinal = (double)toplamFinal / sayac;
+
+                textBox2.Text = ("Vize Ortalaması: " + ortVize.ToString("0.00") +
+                                "\r\nFinal Ortalaması: " + ortFinal.ToString("0.00"));
+            }
+            else
+            {
+                textBox2.Text = ("Ortalama hesaplanacak veri yok.");
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                int toplamVize = 0;
-                int toplamFinal = 0;
-                int sayac = 0;
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    int vize, final;
-
-                    // Vize değeri
-                    if (row.Cells["Vize"].Value != null && int.TryParse(row.Cells["Vize"].Value.ToString(), out vize))
-                    {
-                        toplamVize += vize;
-                    }
-
-                    // Final değeri
-                    if (row.Cells["Final"].Value != null && int.TryParse(row.Cells["Final"].Value.ToString(), out final))
-                    {
-                        toplamFinal += final;
-                    }
-
-                    sayac++; // Geçerli bir satır sayısı
-                }
-
-                if (sayac > 0)
-                {
-                    double ortVize = (double)toplamVize / sayac;
-                    double ortFinal = (double)toplamFinal / sayac;
-
-                    textBox2.Text=("Vize Ortalaması: " + ortVize.ToString("0.00") +
-                                    "\n\rFinal Ortalaması: " + ortFinal.ToString("0.00"));
-                }
-                else
-                {
-                    textBox2.Text = ("Ortalama hesaplanacak veri yok.");
-                }
+                this.vizeFinalOrt();
                 harfNotuHesapla();
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-                this.adapter.Update(this.tablo); // Veritabanındaki değişiklikleri kaydeder
+                this.adapter.Update(this.tablo);
                 MessageBox.Show("Değişiklikler kaydedildi.");
                 
             }
