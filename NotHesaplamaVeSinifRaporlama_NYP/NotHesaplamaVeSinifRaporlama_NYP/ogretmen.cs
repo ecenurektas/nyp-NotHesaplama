@@ -22,17 +22,22 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         {
             InitializeComponent();
         }
-        private string ogrGorevlisiID="2";
+        private string ogrGorevlisiID = "";
         private void ogretmen_Load(object sender, EventArgs e)
         {
+            string kullaniciAdi = login.loginUserID.ToString();
+            
             comboBox1.SelectedIndex = 0;
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM OgretimGorevlisi WHERE OgretimGrID="+this.ogrGorevlisiID, Database.Connection);
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM OgretimGorevlisi WHERE KullaniciAdi = @kadi", Database.Connection);
+                cmd.Parameters.AddWithValue("@kadi", kullaniciAdi);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     textBox1.Text=reader["AdSoyad"].ToString();
+                    this.ogrGorevlisiID = reader["OgretimGrId"].ToString();
                 }
                 reader.Close();
 
@@ -103,7 +108,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
             try
             {
                 SqlCommand cmd1 = new SqlCommand("SELECT * FROM Dersler WHERE DersID = @ad", Database.Connection);

@@ -9,7 +9,7 @@ namespace OrnekProje
 
         public static void InitializeConnection()
         {
-            string connectionString = "Server=192.168.1.175,1433;Database=NYPdb;User ID=sulo;Password=abc123987";
+            string connectionString = "Server=192.168.1.175,1433;Database=NYPdb;User ID=sulo;Password=abc123987;MultipleActiveResultSets=True;";
             Connection = new SqlConnection(connectionString);
             Connection.Open();
         }

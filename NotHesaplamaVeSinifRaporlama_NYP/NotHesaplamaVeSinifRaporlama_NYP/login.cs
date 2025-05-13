@@ -23,35 +23,39 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ogretmen ogretmenForm = new ogretmen();
-            ogretmenForm.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ogrenci ogrenciForm = new ogrenci();
-            ogrenciForm.Show();
-        }
         static public string loginUserID;
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
                 int login = 0;
-                SqlCommand cmd = new SqlCommand("SELECT * FROM OgrenciSifreleri", Database.Connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Sifreler", Database.Connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {  
-                    if (textBox1.Text == reader["OgrenciID"].ToString() && textBox2.Text == reader["SifreHash"].ToString())
+                    if (textBox1.Text == reader["KullaniciAdi"].ToString() && textBox2.Text == reader["Sifre"].ToString())
                     {
-                        loginUserID = reader["OgrenciID"].ToString();
-                        ogrenci ogrenciForm = new ogrenci();
-                        ogrenciForm.Show();
-                        this.Hide();
-                        login = 1;
+                        if (textBox2.Text == "")
+                        {
+                            MessageBox.Show("Şifre boş olamaz.");
+                            return;
+                        }
+                        if (reader["Rol"].ToString() == "OgrGr")
+                        {
+                            login = 1;
+                            loginUserID = reader["KullaniciAdi"].ToString();
+                            ogretmen ogretmenForm = new ogretmen();
+                            ogretmenForm.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            login = 1;
+                            loginUserID = reader["KullaniciAdi"].ToString();
+                            ogrenci ogrenciForm = new ogrenci();
+                            ogrenciForm.Show();
+                            this.Hide();
+                        }
                     }
                 }
                 if(login==0)
@@ -62,6 +66,12 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 MessageBox.Show("Veritabanına baplantı hatası: " + ex.Message);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            sifreOlustur sifreSayfa = new sifreOlustur();
+            sifreSayfa.Show();
         }
     }
 }
