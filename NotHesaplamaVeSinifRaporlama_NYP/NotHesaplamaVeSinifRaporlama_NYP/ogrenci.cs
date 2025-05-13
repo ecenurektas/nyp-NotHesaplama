@@ -21,55 +21,63 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
 
         private void ogrenci_Load(object sender, EventArgs e)
         {
-            string connectionString = "Server=.;Database=NYPdb;Trusted_Connection=True;";
-            string ogrenciID = "20234410078";
-            string OgretimGrID = "2";
+            string connectionString = "Server=192.168.1.175,1433;Database=NYPdb;User ID=sulo;Password=abc123987";
+            string ogrenciID = login.loginUserID.ToString();
+            string OgretimGrID = "";
 
             //Ogrenci bilgilerini cekme
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string query = "SELECT * FROM Ogrenci WHERE OgrenciID = @ogrenciID";
-
-                using (SqlCommand command = new SqlCommand(query, connection)) 
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@ogrenciID", ogrenciID);
+                    connection.Open();
+                    string query = "SELECT * FROM Ogrenci WHERE OgrenciID = @ogrenciID";
 
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.Read())
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        noTextBox.Text = reader["OgrenciID"].ToString();
-                        donemTextBox.Text = reader["OgrenciDonem"].ToString();
-                        ynoTextBox.Text = reader["YNO"].ToString();
+                        command.Parameters.AddWithValue("@ogrenciID", ogrenciID);
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            noTextBox.Text = reader["OgrenciID"].ToString();
+                            donemTextBox.Text = reader["OgrenciDonem"].ToString();
+                            ynoTextBox.Text = reader["YNO"].ToString();
+                            OgretimGrID = reader["OgretimGrID"].ToString();
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
-                }
 
-                // Danisman bilgilerini cekme
-                string query2 = "SELECT * FROM OgretimGorevlisi WHERE OgretimGrID = @OgretimGrID";
+                    // Danisman bilgilerini cekme
+                    string query2 = "SELECT * FROM OgretimGorevlisi WHERE OgretimGrID = @OgretimGrID";
 
-                using (SqlCommand command2 = new SqlCommand(query2, connection))
-                {
-                    command2.Parameters.AddWithValue("@OgretimGrID", OgretimGrID);
-                    SqlDataReader reader2 = command2.ExecuteReader();
-                    if (reader2.Read())
+                    using (SqlCommand command2 = new SqlCommand(query2, connection))
                     {
-                        danismanTextBox.Text = reader2["AdSoyad"].ToString();
+                        command2.Parameters.AddWithValue("@OgretimGrID", OgretimGrID);
+                        SqlDataReader reader2 = command2.ExecuteReader();
+                        if (reader2.Read())
+                        {
+                            danismanTextBox.Text = reader2["AdSoyad"].ToString();
+                        }
+                        reader2.Close();
                     }
-                    reader2.Close();
-                }
 
-                // Not bilgilerini cekme
-                string query3 = "SELECT d.DersAdi, n.Vize, n.Final, n.HarfNotu FROM Notlar n JOIN Dersler d ON n.DersID = d.DersID WHERE n.OgrenciID = @ogrenciID";
-                using (SqlCommand command3 = new SqlCommand(query3, connection))
-                {
-                    command3.Parameters.AddWithValue("@ogrenciID", ogrenciID);
-                    SqlDataAdapter adapter = new SqlDataAdapter(command3);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dataGridView1.DataSource = dt;
+                    // Not bilgilerini cekme
+                    string query3 = "SELECT d.DersAdi, n.Vize, n.Final, n.HarfNotu FROM Notlar n JOIN Dersler d ON n.DersID = d.DersID WHERE n.OgrenciID = @ogrenciID";
+                    using (SqlCommand command3 = new SqlCommand(query3, connection))
+                    {
+                        command3.Parameters.AddWithValue("@ogrenciID", ogrenciID);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command3);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Veritabanı bağlantısı sağlanamadı."+ex.Message);
             }
         }
     }

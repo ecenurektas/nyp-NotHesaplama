@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OrnekProje;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
@@ -32,6 +34,34 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         {
             ogrenci ogrenciForm = new ogrenci();
             ogrenciForm.Show();
+        }
+        static public string loginUserID;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int login = 0;
+                SqlCommand cmd = new SqlCommand("SELECT * FROM OgrenciSifreleri", Database.Connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {  
+                    if (textBox1.Text == reader["OgrenciID"].ToString() && textBox2.Text == reader["SifreHash"].ToString())
+                    {
+                        loginUserID = reader["OgrenciID"].ToString();
+                        ogrenci ogrenciForm = new ogrenci();
+                        ogrenciForm.Show();
+                        this.Hide();
+                        login = 1;
+                    }
+                }
+                if(login==0)
+                    MessageBox.Show("Kullanıcı adı veya şifre hatalı.");
+                reader.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Veritabanına baplantı hatası: " + ex.Message);
+            }
         }
     }
 }
