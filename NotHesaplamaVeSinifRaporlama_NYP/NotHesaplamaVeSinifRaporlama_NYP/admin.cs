@@ -39,23 +39,24 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                         //admin_DB_dersEkle adminEkle = new admin_DB_dersEkle();
                         break;
                     case "Öğrenciye Ders Ekle":
-                        //admin_DB_ogrEkle adminEkle = new admin_DB_ogrEkle();
-                        break;
-                    case "Öğretim Görevlisine Ders Ekle":
-                        //admin_DB_ogrEkle adminEkle = new admin_DB_ogrEkle();
+                        adminOgrenciDersEkle adminOgrenciDersEkle = new adminOgrenciDersEkle();
+                        adminOgrenciDersEkle.Show();
                         break;
                     case "Öğrenci Ekle":
                         adminOgrenciEkle adminEkle = new adminOgrenciEkle();
                         adminEkle.Show();
                         break;
                     case "Öğretim Görevlisi Ekle":
-                        //admin_DB_ogrSil adminEkle = new admin_DB_ogrSil();
+                        AdminOgretimGrEkle1 adminOgretimGrEkle1 = new AdminOgretimGrEkle1();
+                        adminOgretimGrEkle1.Show();
                         break;
                     case "Öğrenci Sil":
-                        //admin_DB_ogrEkle adminEkle = new admin_DB_ogrEkle();
+                        adminOgrenciSil adminOgrenciSil = new adminOgrenciSil();
+                        adminOgrenciSil.Show();
                         break;
                     case "Öğretim Görevlisi Sil":
-                        //admin_DB_ogrEkle adminEkle = new admin_DB_ogrEkle();
+                        adminOgretimGorevlisiSil adminOgretimGorevlisiSil = new adminOgretimGorevlisiSil();
+                        adminOgretimGorevlisiSil.Show();
                         break;
                 }
             }
