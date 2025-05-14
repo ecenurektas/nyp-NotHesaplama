@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OrnekProje;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
@@ -23,8 +25,19 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 if (textBox2.Text == textBox3.Text)
                 {
-                    admin.adminPassword = textBox2.Text;
-                    MessageBox.Show("Şifre başarıyla değiştirildi.");
+                    if (Database.Connection.State != ConnectionState.Open)
+                        Database.Connection.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Sifreler SET Sifre = @sifre WHERE KullaniciAdi = @kadi", Database.Connection);
+                    cmd.Parameters.AddWithValue("@sifre", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@kadi", login.loginUserID);
+                    int sonuc = cmd.ExecuteNonQuery();
+                    if (sonuc > 0) {
+                        MessageBox.Show("Şifre başarıyla değiştirildi.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Şifre değiştirilemedi.");
+                    }
                     this.Close();
                 }
                 else

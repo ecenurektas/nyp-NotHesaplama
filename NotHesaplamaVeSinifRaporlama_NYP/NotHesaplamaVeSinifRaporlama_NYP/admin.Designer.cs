@@ -47,12 +47,14 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "İşlem Seçin",
+            "Admin Şifre Değiştir",
             "Veritabanına Ders Ekle",
             "Öğrenciye Ders Ekle",
             "Öğretim Görevlisine Ders Ekle",
             "Öğrenci Ekle",
             "Öğretim Görevlisi Ekle",
-            "Admin Şifre Değiştir"});
+            "Öğrenci Sil",
+            "Öğretim Görevlisi Sil"});
             this.comboBox1.Location = new System.Drawing.Point(302, 236);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(297, 33);

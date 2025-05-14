@@ -52,6 +52,12 @@
     <Compile Include="admin.Designer.cs">
       <DependentUpon>admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="adminOgrenciEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOgrenciEkle.Designer.cs">
+      <DependentUpon>adminOgrenciEkle.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminSifre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="admin.resx">
       <DependentUpon>admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminOgrenciEkle.resx">
+      <DependentUpon>adminOgrenciEkle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminSifre.resx">
       <DependentUpon>AdminSifre.cs</DependentUpon>
