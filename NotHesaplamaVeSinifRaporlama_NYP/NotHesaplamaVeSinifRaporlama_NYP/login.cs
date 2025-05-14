@@ -29,10 +29,18 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             try
             {
                 int login = 0;
+                if (textBox1.Text == "admin" && textBox2.Text == admin.adminPassword)
+                {
+                    login = 1;
+                    admin adminForm = new admin();
+                    adminForm.Show();
+                    this.Hide();
+                    return;
+                }
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Sifreler", Database.Connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
-                {  
+                {
                     if (textBox1.Text == reader["KullaniciAdi"].ToString() && textBox2.Text == reader["Sifre"].ToString())
                     {
                         if (textBox2.Text == "")

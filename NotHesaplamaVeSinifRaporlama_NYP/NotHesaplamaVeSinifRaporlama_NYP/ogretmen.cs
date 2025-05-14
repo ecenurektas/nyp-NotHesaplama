@@ -26,7 +26,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         private void ogretmen_Load(object sender, EventArgs e)
         {
             string kullaniciAdi = login.loginUserID.ToString();
-            
             comboBox1.SelectedIndex = 0;
             try
             {
