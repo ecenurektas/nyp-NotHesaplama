@@ -52,6 +52,36 @@
     <Compile Include="admin.Designer.cs">
       <DependentUpon>admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="adminOgrenciDersEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOgrenciDersEkle.Designer.cs">
+      <DependentUpon>adminOgrenciDersEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminOgrenciEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOgrenciEkle.Designer.cs">
+      <DependentUpon>adminOgrenciEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminOgrenciSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOgrenciSil.Designer.cs">
+      <DependentUpon>adminOgrenciSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminOgretimGorevlisiSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOgretimGorevlisiSil.Designer.cs">
+      <DependentUpon>adminOgretimGorevlisiSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminOgretimGrEkle1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminOgretimGrEkle1.Designer.cs">
+      <DependentUpon>AdminOgretimGrEkle1.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminSifre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +123,21 @@
     </Compile>
     <EmbeddedResource Include="admin.resx">
       <DependentUpon>admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminOgrenciDersEkle.resx">
+      <DependentUpon>adminOgrenciDersEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminOgrenciEkle.resx">
+      <DependentUpon>adminOgrenciEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminOgrenciSil.resx">
+      <DependentUpon>adminOgrenciSil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminOgretimGorevlisiSil.resx">
+      <DependentUpon>adminOgretimGorevlisiSil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminOgretimGrEkle1.resx">
+      <DependentUpon>AdminOgretimGrEkle1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminSifre.resx">
       <DependentUpon>AdminSifre.cs</DependentUpon>
