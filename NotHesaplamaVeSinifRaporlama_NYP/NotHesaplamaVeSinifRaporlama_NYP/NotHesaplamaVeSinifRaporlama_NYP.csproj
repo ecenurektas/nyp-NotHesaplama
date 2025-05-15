@@ -58,6 +58,12 @@
     <Compile Include="AdminSifre.Designer.cs">
       <DependentUpon>AdminSifre.cs</DependentUpon>
     </Compile>
+    <Compile Include="admin_DB_dersEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin_DB_dersEkle.Designer.cs">
+      <DependentUpon>admin_DB_dersEkle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminSifre.resx">
       <DependentUpon>AdminSifre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin_DB_dersEkle.resx">
+      <DependentUpon>admin_DB_dersEkle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
