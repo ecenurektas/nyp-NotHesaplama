@@ -26,6 +26,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 try
                 {
                     connection.Open();
+                    DersleriListele();
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT OgretimGrID, AdSoyad FROM OgretimGorevlisi", connection);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -51,7 +52,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                     SELECT d.DersID, d.DersAdi, d.BolumKodu, d.Sinif, d.DersSirasi, d.Donem,
                     o.AdSoyad FROM Dersler d
                     LEFT JOIN OgretimGorevlisiDersleri od ON d.DersID = od.DersID
-                    LEFT JOIN OgretimGorevlisi o ON od.OgretimGrID = o.OgretimGr.ID", connection);
+                    LEFT JOIN OgretimGorevlisi o ON od.OgretimGrID = o.OgretimGrID", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
@@ -68,7 +69,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             string dersKodu = $"{bolum}{sinif}{sira:D2}";
 
             string connectionString = "Server=localhost;Database=NYPdb;Trusted_Connection=True;";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -89,8 +89,30 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
 
                 MessageBox.Show("Ders başarıyla eklendi.");
             }
-
             DersleriListele();
+        }
+
+        private void secButton_Click(object sender, EventArgs e)
+        {
+            int ogretimGrID = Convert.ToInt32(comboBoxOgrGorevlisi.SelectedValue);
+
+            string connectionString = "Server=localhost;Database=NYPdb;Trusted_Connection=True;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                
+                SqlDataAdapter adapter = new SqlDataAdapter(@"
+                    SELECT d.DersID, d.DersAdi, d.BolumKodu, d.Sinif, d.DersSirasi, d.Donem,
+                    o.AdSoyad AS OgretimGorevlisi FROM Dersler d 
+                    INNER JOIN OgretimGorevlisiDersleri od ON d.DersID = od.DersID
+                    INNER JOIN OgretimGorevlisi o ON od.OgretimGrID = o.OgretimGrID
+                    WHERE od.OgretimGrID = @ogrGrID", connection);
+                
+                adapter.SelectCommand.Parameters.AddWithValue("@ogrGrID", ogretimGrID);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
         }
     }
 }

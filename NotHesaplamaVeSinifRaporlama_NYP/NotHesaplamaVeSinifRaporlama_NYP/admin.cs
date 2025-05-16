@@ -36,7 +36,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                         adminSifre.Show();
                         break;
                     case "Veritabanına Ders Ekle":
-                        //admin_DB_dersEkle adminEkle = new admin_DB_dersEkle();
+                        admin_DB_dersEkle admin_DB_dersEkle = new admin_DB_dersEkle();
+                        admin_DB_dersEkle.Show();
                         break;
                     case "Öğrenciye Ders Ekle":
                         adminOgrenciDersEkle adminOgrenciDersEkle = new adminOgrenciDersEkle();

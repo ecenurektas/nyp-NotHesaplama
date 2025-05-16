@@ -42,6 +42,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBoxOgrGorevlisi = new System.Windows.Forms.ComboBox();
             this.btnDersEkle = new System.Windows.Forms.Button();
+            this.secButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSinif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSira)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -162,17 +163,28 @@
             // 
             this.btnDersEkle.Location = new System.Drawing.Point(419, 134);
             this.btnDersEkle.Name = "btnDersEkle";
-            this.btnDersEkle.Size = new System.Drawing.Size(80, 24);
+            this.btnDersEkle.Size = new System.Drawing.Size(105, 24);
             this.btnDersEkle.TabIndex = 15;
             this.btnDersEkle.Text = "Ders Ekle";
             this.btnDersEkle.UseVisualStyleBackColor = true;
             this.btnDersEkle.Click += new System.EventHandler(this.btnDersEkle_Click);
+            // 
+            // secButton
+            // 
+            this.secButton.Location = new System.Drawing.Point(545, 135);
+            this.secButton.Name = "secButton";
+            this.secButton.Size = new System.Drawing.Size(100, 23);
+            this.secButton.TabIndex = 16;
+            this.secButton.Text = "Seç";
+            this.secButton.UseVisualStyleBackColor = true;
+            this.secButton.Click += new System.EventHandler(this.secButton_Click);
             // 
             // admin_DB_dersEkle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 450);
+            this.Controls.Add(this.secButton);
             this.Controls.Add(this.btnDersEkle);
             this.Controls.Add(this.comboBoxOgrGorevlisi);
             this.Controls.Add(this.dataGridView1);
@@ -215,5 +227,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBoxOgrGorevlisi;
         private System.Windows.Forms.Button btnDersEkle;
+        private System.Windows.Forms.Button secButton;
     }
 }
