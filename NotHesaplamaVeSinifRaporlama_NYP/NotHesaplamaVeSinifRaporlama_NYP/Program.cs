@@ -28,7 +28,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 MessageBox.Show("Veritabanına bağlanılamadı: " + ex.Message);
                 return;
             }
-
             Application.Run(new login());
         }
     }
