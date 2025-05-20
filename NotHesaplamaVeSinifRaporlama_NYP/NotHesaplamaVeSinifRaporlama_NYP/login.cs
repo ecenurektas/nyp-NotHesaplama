@@ -9,14 +9,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class login : Form
+    public partial class login : MaterialForm
     {
+        private readonly MaterialSkinManager materialSkinManager;
         public login()
         {
             InitializeComponent();
+
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue800,     // Ana renk (arka plan)
+                Primary.Blue900,     // Daha koyu ton
+                Primary.Blue500,     // Butonlar vs.
+                Accent.LightBlue200,     // Vurgu rengi
+                TextShade.WHITE
+            );
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -24,7 +38,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
 
         }
         static public string loginUserID;
-        private void button3_Click(object sender, EventArgs e)
+
+        private void materialButton1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -48,7 +63,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                             ogretmenForm.Show();
                             this.Hide();
                         }
-                        else if (reader["Rol"].ToString()=="ogr")
+                        else if (reader["Rol"].ToString() == "ogr")
                         {
                             login = 1;
                             loginUserID = reader["KullaniciAdi"].ToString();
@@ -66,17 +81,17 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                         }
                     }
                 }
-                if(login==0)
+                if (login == 0)
                     MessageBox.Show("Kullanıcı adı veya şifre hatalı.");
                 reader.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Veritabanına baplantı hatası: " + ex.Message);
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void materialButton2_Click(object sender, EventArgs e)
         {
             sifreOlustur sifreSayfa = new sifreOlustur();
             sifreSayfa.Show();

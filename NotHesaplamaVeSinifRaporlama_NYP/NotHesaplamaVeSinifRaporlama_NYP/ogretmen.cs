@@ -12,21 +12,36 @@ using System.Windows.Forms;
 using NotHesaplamaVeSinifRaporlama_NYP;
 using OrnekProje;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class ogretmen : Form
+    public partial class ogretmen : MaterialForm
     {
+        private readonly MaterialSkinManager materialSkinManager;
         public ogretmen()
         {
             InitializeComponent();
+
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue800,     // Ana renk (arka plan)
+                Primary.Blue900,     // Daha koyu ton
+                Primary.Blue500,     // Butonlar vs.
+                Accent.LightBlue200,     // Vurgu rengi
+                TextShade.WHITE
+            );
         }
         private string ogrGorevlisiID = "";
         private void ogretmen_Load(object sender, EventArgs e)
         {
+            StyleDataGridView();
             string kullaniciAdi = login.loginUserID.ToString();
-            comboBox1.SelectedIndex = 0;
+            materialComboBox1.SelectedIndex = 0;
             try
             {
 
@@ -44,7 +59,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 SqlDataReader reader2 = cmd2.ExecuteReader();
                 while (reader2.Read())
                 {
-                    comboBox1.Items.Add(reader2["DersID"].ToString());
+                    materialComboBox1.Items.Add(reader2["DersID"].ToString());
                 }
                 reader2.Close();
             }
@@ -53,6 +68,38 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 MessageBox.Show("ComboBox veri yüklenemedi: " + ex.Message);
             }
 
+        }
+        public void StyleDataGridView()
+        {
+            // Başlıkların kendi Windows temasını kapat, kendi stilimizi uygula
+            dataGridView1.EnableHeadersVisualStyles = false;
+
+            // Başlık arka plan ve yazı rengi
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);  // Material Blue 500
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Hücre stili
+            dataGridView1.DefaultCellStyle.BackColor = Color.White;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(33, 33, 33);
+            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 181, 246);  // Material Light Blue 300
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Satır yüksekliği
+            dataGridView1.RowTemplate.Height = 35;
+
+            // Grid çizgileri ve seçim modu
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.GridColor = Color.LightGray;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+
+            // Alternatif satır rengini aç (opsiyonel)
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private string secilen = "";
         private SqlDataAdapter adapter;
@@ -105,42 +152,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                SqlCommand cmd1 = new SqlCommand("SELECT * FROM Dersler WHERE DersID = @ad", Database.Connection);
-                cmd1.Parameters.AddWithValue("@ad", comboBox1.SelectedItem.ToString());
-                SqlDataReader reader1 = cmd1.ExecuteReader();
-                while (reader1.Read())
-                {
-                    this.secilen = reader1["DersID"].ToString();
-                }
-                reader1.Close();
-                if (Database.Connection.State != ConnectionState.Open)
-                    Database.Connection.Open();
-                SqlCommand komut = new SqlCommand("SELECT * FROM Notlar WHERE DersID = @id", Database.Connection);
-                komut.Parameters.AddWithValue("@id", this.secilen);
-
-                this.adapter = new SqlDataAdapter(komut);
-                this.tablo = new DataTable();
-                adapter.Fill(tablo);
-                dataGridView1.DataSource = tablo;
-                dataGridView1.ReadOnly = false;
-                dataGridView1.Columns["Vize"].ReadOnly = false;
-                dataGridView1.Columns["Final"].ReadOnly = false;
-                dataGridView1.Columns["OgrenciID"].ReadOnly = true;
-                dataGridView1.Columns["DersID"].ReadOnly = true;
-                dataGridView1.Columns["HarfNotu"].ReadOnly = true;
-                harfNotuHesapla();
-                this.vizeFinalOrt();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hata: " + ex.Message);
-            }
-        }
         private void vizeFinalOrt()
         {
             int toplamVize = 0;
@@ -176,7 +187,44 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 textBox2.Text = ("Ortalama hesaplanacak veri yok.");
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd1 = new SqlCommand("SELECT * FROM Dersler WHERE DersID = @ad", Database.Connection);
+                cmd1.Parameters.AddWithValue("@ad", materialComboBox1.SelectedItem.ToString());
+                SqlDataReader reader1 = cmd1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    this.secilen = reader1["DersID"].ToString();
+                }
+                reader1.Close();
+                if (Database.Connection.State != ConnectionState.Open)
+                    Database.Connection.Open();
+                SqlCommand komut = new SqlCommand("SELECT * FROM Notlar WHERE DersID = @id", Database.Connection);
+                komut.Parameters.AddWithValue("@id", this.secilen);
+
+                this.adapter = new SqlDataAdapter(komut);
+                this.tablo = new DataTable();
+                adapter.Fill(tablo);
+                dataGridView1.DataSource = tablo;
+                dataGridView1.ReadOnly = false;
+                dataGridView1.Columns["Vize"].ReadOnly = false;
+                dataGridView1.Columns["Final"].ReadOnly = false;
+                dataGridView1.Columns["OgrenciID"].ReadOnly = true;
+                dataGridView1.Columns["DersID"].ReadOnly = true;
+                dataGridView1.Columns["HarfNotu"].ReadOnly = true;
+                harfNotuHesapla();
+                this.vizeFinalOrt();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
         {
             try
             {
@@ -185,7 +233,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
                 this.adapter.Update(this.tablo);
                 MessageBox.Show("Değişiklikler kaydedildi.");
-                
+
             }
             catch (Exception ex)
             {
