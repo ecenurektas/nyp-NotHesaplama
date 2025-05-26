@@ -9,14 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class adminOgretimGorevlisiSil : Form
+    public partial class adminOgretimGorevlisiSil : MaterialForm
     {
         public adminOgretimGorevlisiSil()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
         }
 
         private void adminOgretimGorevlisiSil_Load(object sender, EventArgs e)
@@ -31,11 +35,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             dataGridView1.DataSource = dt;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (string.IsNullOrEmpty(textBox1.Text))
+                if (string.IsNullOrEmpty(materialTextBox1.Text))
                 {
                     MessageBox.Show("Lütfen silmek istediğiniz öğretim görevlisinin ID'sini girin.");
                     return;
@@ -43,7 +47,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 else
                 {
                     SqlCommand cmd = new SqlCommand("DELETE FROM OgretimGorevlisi WHERE OgrenciID = @ID", Database.Connection);
-                    cmd.Parameters.AddWithValue("@ID", textBox1.Text.ToString());
+                    cmd.Parameters.AddWithValue("@ID", materialTextBox1.Text.ToString());
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Öğretim görevlisi silindi.");
                     tablo();

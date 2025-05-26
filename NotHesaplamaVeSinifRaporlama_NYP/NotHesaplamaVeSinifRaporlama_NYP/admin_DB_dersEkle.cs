@@ -9,20 +9,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class admin_DB_dersEkle : Form
+    public partial class admin_DB_dersEkle : MaterialForm
     {
         public admin_DB_dersEkle()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
         }
 
         private void admin_DB_dersEkle_Load(object sender, EventArgs e)
         {
             try
             {
+                DesignManager.StyleDataGridView(dataGridView1);
                 DersleriListele();
 
                 SqlDataAdapter adapter = new SqlDataAdapter(
@@ -31,9 +36,9 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-                comboBoxOgrGorevlisi.DisplayMember = "AdSoyad";
-                comboBoxOgrGorevlisi.ValueMember = "OgretimGrID";
-                comboBoxOgrGorevlisi.DataSource = dt;
+                materialComboBox1.DisplayMember = "AdSoyad";
+                materialComboBox1.ValueMember = "OgretimGrID";
+                materialComboBox1.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -54,13 +59,13 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             dataGridView1.DataSource = dt;
         }
 
-        private void btnDersEkle_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e)
         {
-            string bolum = comboBoxBolum.SelectedItem.ToString();
+            string bolum = materialComboBox2.SelectedItem.ToString();
             int sinif = (int)numericUpDownSinif.Value;
             int sira = (int)numericUpDownSira.Value;
             int donem = (sira % 2 == 0) ? 2 : 1;
-            string dersAdi = txtDersAdi.Text.Trim().ToUpper();
+            string dersAdi = materialTextBox1.Text.Trim().ToUpper();
             string dersKodu = $"{bolum}{sinif}{sira:D2}";
 
             SqlCommand command = new SqlCommand(@"
@@ -75,7 +80,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             command.Parameters.AddWithValue("@donem", donem);
             command.ExecuteNonQuery();
 
-            int ogretimGrID = Convert.ToInt32(comboBoxOgrGorevlisi.SelectedValue);
+            int ogretimGrID = Convert.ToInt32(materialComboBox1.SelectedValue);
 
             SqlCommand command2 = new SqlCommand(@"
         INSERT INTO OgretimGorevlisiDersleri (OgretimGrID, DersID) 
@@ -89,9 +94,9 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             DersleriListele();
         }
 
-        private void secButton_Click(object sender, EventArgs e)
+        private void materialButton2_Click(object sender, EventArgs e)
         {
-            int ogretimGrID = Convert.ToInt32(comboBoxOgrGorevlisi.SelectedValue);
+            int ogretimGrID = Convert.ToInt32(materialComboBox1.SelectedValue);
 
             SqlDataAdapter adapter = new SqlDataAdapter(@"
         SELECT d.DersID, d.DersAdi, d.BolumKodu, d.Sinif, d.DersSirasi, d.Donem,

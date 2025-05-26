@@ -10,17 +10,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class AdminOgretimGrEkle1 : Form
+    public partial class AdminOgretimGrEkle1 : MaterialForm
     {
         public AdminOgretimGrEkle1()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -28,8 +32,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                     Database.Connection.Open();
 
                 SqlCommand cmd = new SqlCommand("INSERT INTO OgretimGorevlisi (AdSoyad, KullaniciAdi) VALUES (@isim, @kullaniciad)", Database.Connection);
-                cmd.Parameters.AddWithValue("@isim", textBox1.Text.ToString());
-                string girilenIsim = textBox1.Text;
+                cmd.Parameters.AddWithValue("@isim", materialTextBox1.Text.ToString());
+                string girilenIsim = materialTextBox1.Text;
                 string kullaniciAdi = girilenIsim.Replace(" ", "").ToLower();
                 cmd.Parameters.AddWithValue("@kullaniciad", kullaniciAdi);
                 int sonuc = cmd.ExecuteNonQuery();

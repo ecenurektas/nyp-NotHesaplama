@@ -9,19 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class adminOgrenciSil : Form
+    public partial class adminOgrenciSil : MaterialForm
     {
         public adminOgrenciSil()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
         }
 
         private void adminOgrenciSil_Load(object sender, EventArgs e)
         {
             tablo();
+            DesignManager.StyleDataGridView(dataGridView1);
 
         }
         private void tablo()
@@ -32,11 +37,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             dataGridView1.DataSource = dt;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (string.IsNullOrEmpty(textBox1.Text))
+                if (string.IsNullOrEmpty(materialTextBox1.Text))
                 {
                     MessageBox.Show("Lütfen silmek istediğiniz öğrencinin ID'sini girin.");
                     return;
@@ -44,13 +49,14 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 else
                 {
                     SqlCommand cmd = new SqlCommand("DELETE FROM Ogrenci WHERE OgrenciID = @OgrenciID", Database.Connection);
-                    cmd.Parameters.AddWithValue("@OgrenciID", textBox1.Text.ToString());
+                    cmd.Parameters.AddWithValue("@OgrenciID", materialTextBox1.Text.ToString());
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Öğrenci silindi.");
                     tablo();
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("Öğrenci silinemedi: " + ex.Message);
             }
         }

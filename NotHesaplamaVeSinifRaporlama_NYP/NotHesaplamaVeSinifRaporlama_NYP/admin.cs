@@ -9,29 +9,82 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using OrnekProje;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MaterialSkin;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class admin : Form
+    
+    public partial class admin : MaterialForm
     {
         public admin()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        static public string adminPassword;
+        private void admin_Load(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem == null)
+            string kullaniciAdi = login.loginUserID.ToString();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM OgretimGorevlisi WHERE KullaniciAdi = @kadi", Database.Connection);
+                cmd.Parameters.AddWithValue("@kadi", kullaniciAdi);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    materialTextBox1.Text = reader["AdSoyad"].ToString();
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ComboBox veri yüklenemedi: " + ex.Message);
+            }
+            SqlCommand cmd2 = new SqlCommand("SELECT * FROM Sifreler WHERE KullaniciAdi = @kadi", Database.Connection);
+            cmd2.Parameters.AddWithValue("@kadi", login.loginUserID);
+            SqlDataReader reader2 = cmd2.ExecuteReader();
+            while (reader2.Read())
+            {
+                adminPassword = reader2["Sifre"].ToString();
+            }
+            reader2.Close();
+
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            login login = new login();
+            DialogResult result = MessageBox.Show("Çıkış yapmak istediğinize emin misiniz?", "Çıkış", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                login.Show();
+            }
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
+        {
+            if (materialComboBox1.SelectedItem == null)
             {
                 MessageBox.Show("Lütfen bir işlem seçin.");
                 return;
             }
             else
             {
-                switch (comboBox1.SelectedItem.ToString())
+                switch (materialComboBox1.SelectedItem.ToString())
                 {
-                    case "Admin Şifre Değiştir":
+                    case "Ders Notu Gir":
+                        ogretmen ogretmen = new ogretmen();
+                        ogretmen.Show();
+                        break;
+                    case "Şifre Değiştir":
                         AdminSifre adminSifre = new AdminSifre();
                         adminSifre.Show();
                         break;
@@ -61,20 +114,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                         break;
                 }
             }
-
-        }
-        static public string adminPassword;
-        private void admin_Load(object sender, EventArgs e)
-        {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Sifreler WHERE KullaniciAdi = @kadi", Database.Connection);
-            cmd.Parameters.AddWithValue("@kadi", login.loginUserID);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                adminPassword = reader["Sifre"].ToString();
-            }
-            reader.Close();
-
         }
     }
 }
