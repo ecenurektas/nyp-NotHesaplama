@@ -59,7 +59,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                         {
                             login = 1;
                             loginUserID = reader["KullaniciAdi"].ToString();
-                            ogretmen ogretmenForm = new ogretmen();
+                            admin ogretmenForm = new admin();
                             ogretmenForm.Show();
                             this.Hide();
                         }
@@ -69,14 +69,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                             loginUserID = reader["KullaniciAdi"].ToString();
                             ogrenci ogrenciForm = new ogrenci();
                             ogrenciForm.Show();
-                            this.Hide();
-                        }
-                        else if (reader["Rol"].ToString() == "admin")
-                        {
-                            login = 1;
-                            loginUserID = reader["KullaniciAdi"].ToString();
-                            admin adminForm = new admin();
-                            adminForm.Show();
                             this.Hide();
                         }
                     }

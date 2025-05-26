@@ -99,6 +99,7 @@
       <DependentUpon>admin_DB_dersEkle.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="DesignManager.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>

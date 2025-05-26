@@ -10,29 +10,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class adminOgrenciEkle : Form
+    public partial class adminOgrenciEkle : MaterialForm
     {
         public adminOgrenciEkle()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
         }
 
         private void adminOgrenciEkle_Load(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndex = 0;
             SqlCommand cmd = new SqlCommand("SELECT * FROM OgretimGorevlisi", Database.Connection);
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                comboBox1.Items.Add(reader["AdSoyad"].ToString());
+                materialComboBox1.Items.Add(reader["AdSoyad"].ToString());
             }
             reader.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -40,13 +43,13 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                     Database.Connection.Open();
 
                 SqlCommand cmd = new SqlCommand("INSERT INTO Ogrenci (OgrenciID, AdSoyad, OgretimGrID,OgrenciDonem) VALUES (@id, @isim, @ogrgr, @ogrdonem)", Database.Connection);
-                cmd.Parameters.AddWithValue("@id", textBox1.Text.ToString());
-                cmd.Parameters.AddWithValue("@isim", textBox2.Text.ToString());
-                cmd.Parameters.AddWithValue("@ogrdonem", textBox3.Text.ToString());
+                cmd.Parameters.AddWithValue("@id", materialTextBox1.Text.ToString());
+                cmd.Parameters.AddWithValue("@isim", materialTextBox2.Text.ToString());
+                cmd.Parameters.AddWithValue("@ogrdonem", materialTextBox3.Text.ToString());
                 SqlCommand cmd2 = new SqlCommand("SELECT * FROM OgretimGorevlisi WHERE AdSoyad=@ad", Database.Connection);
-                cmd2.Parameters.AddWithValue("@ad", comboBox1.SelectedItem.ToString());
+                cmd2.Parameters.AddWithValue("@ad", materialComboBox1.SelectedItem.ToString());
                 SqlDataReader reader = cmd2.ExecuteReader();
-                string ogrGrID="";
+                string ogrGrID = "";
                 while (reader.Read())
                 {
                     ogrGrID = reader["OgretimGrID"].ToString();
