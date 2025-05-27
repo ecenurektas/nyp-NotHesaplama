@@ -41,9 +41,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(120, 233);
+            this.label1.Location = new System.Drawing.Point(80, 149);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(259, 37);
+            this.label1.Size = new System.Drawing.Size(159, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Eski Şifreyi Girin:";
             // 
@@ -51,9 +52,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(116, 370);
+            this.label2.Location = new System.Drawing.Point(77, 237);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(263, 37);
+            this.label2.Size = new System.Drawing.Size(161, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Yeni Şifreyi Girin:";
             // 
@@ -61,9 +63,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 516);
+            this.label3.Location = new System.Drawing.Point(9, 330);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(365, 37);
+            this.label3.Size = new System.Drawing.Size(223, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Yeni Şifreyi Tekrar Girin:";
             // 
@@ -76,12 +79,12 @@
             this.materialButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(396, 642);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.Location = new System.Drawing.Point(264, 411);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(306, 86);
+            this.materialButton1.Size = new System.Drawing.Size(204, 55);
             this.materialButton1.TabIndex = 7;
             this.materialButton1.Text = "Onayla";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -96,12 +99,13 @@
             this.materialTextBox1.Depth = 0;
             this.materialTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialTextBox1.LeadingIcon = null;
-            this.materialTextBox1.Location = new System.Drawing.Point(396, 228);
+            this.materialTextBox1.Location = new System.Drawing.Point(264, 146);
+            this.materialTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.materialTextBox1.MaxLength = 50;
             this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.materialTextBox1.Multiline = false;
             this.materialTextBox1.Name = "materialTextBox1";
-            this.materialTextBox1.Size = new System.Drawing.Size(306, 50);
+            this.materialTextBox1.Size = new System.Drawing.Size(204, 50);
             this.materialTextBox1.TabIndex = 8;
             this.materialTextBox1.Text = "";
             this.materialTextBox1.TrailingIcon = null;
@@ -113,12 +117,13 @@
             this.materialTextBox2.Depth = 0;
             this.materialTextBox2.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialTextBox2.LeadingIcon = null;
-            this.materialTextBox2.Location = new System.Drawing.Point(396, 363);
+            this.materialTextBox2.Location = new System.Drawing.Point(264, 232);
+            this.materialTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.materialTextBox2.MaxLength = 50;
             this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
             this.materialTextBox2.Multiline = false;
             this.materialTextBox2.Name = "materialTextBox2";
-            this.materialTextBox2.Size = new System.Drawing.Size(306, 50);
+            this.materialTextBox2.Size = new System.Drawing.Size(204, 50);
             this.materialTextBox2.TabIndex = 9;
             this.materialTextBox2.Text = "";
             this.materialTextBox2.TrailingIcon = null;
@@ -130,21 +135,22 @@
             this.materialTextBox3.Depth = 0;
             this.materialTextBox3.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialTextBox3.LeadingIcon = null;
-            this.materialTextBox3.Location = new System.Drawing.Point(396, 511);
+            this.materialTextBox3.Location = new System.Drawing.Point(264, 327);
+            this.materialTextBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.materialTextBox3.MaxLength = 50;
             this.materialTextBox3.MouseState = MaterialSkin.MouseState.OUT;
             this.materialTextBox3.Multiline = false;
             this.materialTextBox3.Name = "materialTextBox3";
-            this.materialTextBox3.Size = new System.Drawing.Size(306, 50);
+            this.materialTextBox3.Size = new System.Drawing.Size(204, 50);
             this.materialTextBox3.TabIndex = 10;
             this.materialTextBox3.Text = "";
             this.materialTextBox3.TrailingIcon = null;
             // 
             // AdminSifre
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(846, 742);
+            this.ClientSize = new System.Drawing.Size(564, 475);
             this.Controls.Add(this.materialTextBox3);
             this.Controls.Add(this.materialTextBox2);
             this.Controls.Add(this.materialTextBox1);
@@ -152,8 +158,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AdminSifre";
-            this.Text = "AdminSifre";
+            this.Padding = new System.Windows.Forms.Padding(2, 41, 2, 2);
+            this.Text = "Yönetici Şifre Oluşturma";
             this.ResumeLayout(false);
             this.PerformLayout();
 

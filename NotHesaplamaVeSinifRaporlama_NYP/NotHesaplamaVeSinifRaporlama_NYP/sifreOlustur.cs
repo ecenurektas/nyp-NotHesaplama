@@ -9,24 +9,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrnekProje;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace NotHesaplamaVeSinifRaporlama_NYP
 {
-    public partial class sifreOlustur : Form
+    public partial class sifreOlustur : MaterialForm
     {
         public sifreOlustur()
         {
             InitializeComponent();
+
+            DesignManager.ApplyTheme(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void sifreOlustur_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
         {
             int login = 0;
             SqlCommand cmd = new SqlCommand("SELECT * FROM Sifreler", Database.Connection);
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                if (textBox1.Text == reader["KullaniciAdi"].ToString())
+                if (materialTextBox1.Text == reader["KullaniciAdi"].ToString())
                 {
                     if (reader["Sifre"].ToString() != "")
                     {
@@ -37,15 +46,15 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                     {
                         login = 1;
                         SqlCommand cmd2 = new SqlCommand("UPDATE Sifreler SET Sifre=@sifre WHERE KullaniciAdi=@kullaniciadi", Database.Connection);
-                        cmd2.Parameters.AddWithValue("@sifre", textBox2.Text);
-                        cmd2.Parameters.AddWithValue("@kullaniciadi", textBox1.Text);
+                        cmd2.Parameters.AddWithValue("@sifre", materialTextBox2.Text);
+                        cmd2.Parameters.AddWithValue("@kullaniciadi", materialTextBox1.Text);
                         cmd2.ExecuteNonQuery();
                         MessageBox.Show("Şifre başarıyla oluşturuldu.");
                         this.Close();
                     }
                 }
             }
-            if(login == 0)
+            if (login == 0)
             {
                 MessageBox.Show("Kullanıcı adı bulunamadı.");
             }

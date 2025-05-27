@@ -46,7 +46,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand("DELETE FROM OgretimGorevlisi WHERE OgrenciID = @ID", Database.Connection);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM OgretimGorevlisi WHERE OgretimGrID = @ID", Database.Connection);
                     cmd.Parameters.AddWithValue("@ID", materialTextBox1.Text.ToString());
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Öğretim görevlisi silindi.");

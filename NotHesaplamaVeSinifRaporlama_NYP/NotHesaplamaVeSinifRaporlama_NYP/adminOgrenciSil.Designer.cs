@@ -38,20 +38,22 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(60, 390);
+            this.dataGridView1.Location = new System.Drawing.Point(40, 250);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(932, 287);
+            this.dataGridView1.Size = new System.Drawing.Size(621, 184);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(162, 197);
+            this.label1.Location = new System.Drawing.Point(108, 126);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(464, 37);
+            this.label1.Size = new System.Drawing.Size(285, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Silinecek Öğrencinin Numarası:";
             // 
@@ -63,12 +65,12 @@
             this.materialButton1.Depth = 0;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(669, 315);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.Location = new System.Drawing.Point(446, 202);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(323, 58);
+            this.materialButton1.Size = new System.Drawing.Size(215, 37);
             this.materialButton1.TabIndex = 4;
             this.materialButton1.Text = "Sil";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -83,27 +85,30 @@
             this.materialTextBox1.Depth = 0;
             this.materialTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialTextBox1.LeadingIcon = null;
-            this.materialTextBox1.Location = new System.Drawing.Point(669, 197);
+            this.materialTextBox1.Location = new System.Drawing.Point(446, 126);
+            this.materialTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.materialTextBox1.MaxLength = 50;
             this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.materialTextBox1.Multiline = false;
             this.materialTextBox1.Name = "materialTextBox1";
-            this.materialTextBox1.Size = new System.Drawing.Size(323, 50);
+            this.materialTextBox1.Size = new System.Drawing.Size(215, 50);
             this.materialTextBox1.TabIndex = 5;
             this.materialTextBox1.Text = "";
             this.materialTextBox1.TrailingIcon = null;
             // 
             // adminOgrenciSil
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 726);
+            this.ClientSize = new System.Drawing.Size(699, 465);
             this.Controls.Add(this.materialTextBox1);
             this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "adminOgrenciSil";
-            this.Text = "adminOgrenciSil";
+            this.Padding = new System.Windows.Forms.Padding(2, 41, 2, 2);
+            this.Text = "Öğrenci Silme";
             this.Load += new System.EventHandler(this.adminOgrenciSil_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
