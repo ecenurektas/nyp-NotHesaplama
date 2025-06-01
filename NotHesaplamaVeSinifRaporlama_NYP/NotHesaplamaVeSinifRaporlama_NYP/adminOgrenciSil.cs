@@ -19,8 +19,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public adminOgrenciSil()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, OgrenciSilPanel);
         }
 
         private void adminOgrenciSil_Load(object sender, EventArgs e)
@@ -59,6 +59,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 MessageBox.Show("Öğrenci silinemedi: " + ex.Message);
             }
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

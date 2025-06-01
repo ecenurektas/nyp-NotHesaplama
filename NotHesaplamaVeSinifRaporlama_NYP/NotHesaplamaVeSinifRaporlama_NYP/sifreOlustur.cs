@@ -19,8 +19,9 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public sifreOlustur()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, SifreOlusturPanel);
+            
         }
 
         private void sifreOlustur_Load(object sender, EventArgs e)
@@ -59,6 +60,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 MessageBox.Show("Kullanıcı adı bulunamadı.");
             }
             reader.Close();
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

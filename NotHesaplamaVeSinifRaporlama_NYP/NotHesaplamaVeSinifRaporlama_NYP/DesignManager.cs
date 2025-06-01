@@ -9,6 +9,23 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
     {
         private static MaterialSkinManager materialSkinManager;
 
+        public static void CenterControl(Control parent, Control child)
+        {
+            if (parent == null || child == null)
+                return;
+            // Parent kontrolün boyutlarını ve konumunu al
+            int parentWidth = parent.ClientSize.Width;
+            int parentHeight = parent.ClientSize.Height;
+            // Child kontrolün boyutlarını al
+            int childWidth = child.Width;
+            int childHeight = child.Height;
+            // Child kontrolü ortala
+            int x = (parentWidth - childWidth) / 2;
+            int y = (parentHeight - childHeight) / 2;
+            // Child kontrolün konumunu ayarla
+            child.Location = new Point(x, y);   
+        }
+
         static DesignManager()
         {
             materialSkinManager = MaterialSkinManager.Instance;
@@ -21,9 +38,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 TextShade.WHITE
             );
         }
-
         public static void ApplyTheme(MaterialForm form)
         {
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Bounds = Screen.PrimaryScreen.Bounds;
+            form.TopMost = true;
             materialSkinManager.AddFormToManage(form);
         }
         public static void StyleDataGridView(DataGridView grid)

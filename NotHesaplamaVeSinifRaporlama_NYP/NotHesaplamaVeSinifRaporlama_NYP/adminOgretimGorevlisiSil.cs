@@ -19,8 +19,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public adminOgretimGorevlisiSil()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, OgretimGorevlisiSilPanel);
         }
 
         private void adminOgretimGorevlisiSil_Load(object sender, EventArgs e)
@@ -57,6 +57,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 MessageBox.Show("Öğretim görevlisi silinemedi: " + ex.Message);
             }
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

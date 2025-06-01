@@ -18,8 +18,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public AdminSifre()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, AdminSifreOlusturPanel);
         }
 
         private void materialButton1_Click(object sender, EventArgs e)
@@ -53,6 +53,21 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 MessageBox.Show("Eski şifre yanlış.");
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

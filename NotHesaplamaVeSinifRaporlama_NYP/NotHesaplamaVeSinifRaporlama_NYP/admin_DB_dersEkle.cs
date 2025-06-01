@@ -19,8 +19,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public admin_DB_dersEkle()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, DersEklePanel);
         }
 
         private void admin_DB_dersEkle_Load(object sender, EventArgs e)
@@ -110,6 +110,26 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
+        }
+
+        private void materialLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

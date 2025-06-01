@@ -28,114 +28,176 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
-            this.noTextBox = new System.Windows.Forms.TextBox();
-            this.danismanTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ynoTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.donemTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.noTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.danismanTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.donemTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.ynoTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.OgrenciPanel = new System.Windows.Forms.Panel();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.OgrenciPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(23, 146);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Öğrenci Numarası:";
-            // 
-            // noTextBox
-            // 
-            this.noTextBox.Location = new System.Drawing.Point(209, 142);
-            this.noTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.noTextBox.Name = "noTextBox";
-            this.noTextBox.ReadOnly = true;
-            this.noTextBox.Size = new System.Drawing.Size(180, 31);
-            this.noTextBox.TabIndex = 4;
-            // 
-            // danismanTextBox
-            // 
-            this.danismanTextBox.Location = new System.Drawing.Point(542, 142);
-            this.danismanTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.danismanTextBox.Name = "danismanTextBox";
-            this.danismanTextBox.ReadOnly = true;
-            this.danismanTextBox.Size = new System.Drawing.Size(205, 31);
-            this.danismanTextBox.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(427, 146);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 25);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Danışman:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(781, 146);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 25);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Dönem:";
-            // 
-            // ynoTextBox
-            // 
-            this.ynoTextBox.Location = new System.Drawing.Point(1196, 142);
-            this.ynoTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ynoTextBox.Name = "ynoTextBox";
-            this.ynoTextBox.ReadOnly = true;
-            this.ynoTextBox.Size = new System.Drawing.Size(229, 31);
-            this.ynoTextBox.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(1130, 146);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 25);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "GPA:";
-            // 
-            // donemTextBox
-            // 
-            this.donemTextBox.Location = new System.Drawing.Point(871, 142);
-            this.donemTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.donemTextBox.Name = "donemTextBox";
-            this.donemTextBox.ReadOnly = true;
-            this.donemTextBox.Size = new System.Drawing.Size(205, 31);
-            this.donemTextBox.TabIndex = 11;
             // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 197);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Location = new System.Drawing.Point(143, 313);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1398, 601);
+            this.dataGridView1.Size = new System.Drawing.Size(932, 385);
             this.dataGridView1.TabIndex = 12;
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(140, 144);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(132, 33);
+            this.materialLabel1.TabIndex = 14;
+            this.materialLabel1.Text = "Öğrenci Numarası:";
+            // 
+            // noTextBox1
+            // 
+            this.noTextBox1.AnimateReadOnly = false;
+            this.noTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.noTextBox1.Depth = 0;
+            this.noTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.noTextBox1.LeadingIcon = null;
+            this.noTextBox1.Location = new System.Drawing.Point(344, 141);
+            this.noTextBox1.MaxLength = 50;
+            this.noTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.noTextBox1.Multiline = false;
+            this.noTextBox1.Name = "noTextBox1";
+            this.noTextBox1.Size = new System.Drawing.Size(208, 36);
+            this.noTextBox1.TabIndex = 15;
+            this.noTextBox1.Text = "";
+            this.noTextBox1.TrailingIcon = null;
+            this.noTextBox1.UseAccent = false;
+            this.noTextBox1.UseTallSize = false;
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(192, 233);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(80, 23);
+            this.materialLabel2.TabIndex = 16;
+            this.materialLabel2.Text = "Danışman:";
+            // 
+            // danismanTextBox1
+            // 
+            this.danismanTextBox1.AnimateReadOnly = false;
+            this.danismanTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.danismanTextBox1.Depth = 0;
+            this.danismanTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.danismanTextBox1.LeadingIcon = null;
+            this.danismanTextBox1.Location = new System.Drawing.Point(344, 231);
+            this.danismanTextBox1.MaxLength = 50;
+            this.danismanTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.danismanTextBox1.Multiline = false;
+            this.danismanTextBox1.Name = "danismanTextBox1";
+            this.danismanTextBox1.Size = new System.Drawing.Size(208, 36);
+            this.danismanTextBox1.TabIndex = 17;
+            this.danismanTextBox1.Text = "";
+            this.danismanTextBox1.TrailingIcon = null;
+            this.danismanTextBox1.UseAccent = false;
+            this.danismanTextBox1.UseTallSize = false;
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel3.Location = new System.Drawing.Point(653, 144);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(56, 19);
+            this.materialLabel3.TabIndex = 18;
+            this.materialLabel3.Text = "Dönem:";
+            // 
+            // donemTextBox1
+            // 
+            this.donemTextBox1.AnimateReadOnly = false;
+            this.donemTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.donemTextBox1.Depth = 0;
+            this.donemTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.donemTextBox1.LeadingIcon = null;
+            this.donemTextBox1.Location = new System.Drawing.Point(776, 141);
+            this.donemTextBox1.MaxLength = 50;
+            this.donemTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.donemTextBox1.Multiline = false;
+            this.donemTextBox1.Name = "donemTextBox1";
+            this.donemTextBox1.Size = new System.Drawing.Size(208, 36);
+            this.donemTextBox1.TabIndex = 19;
+            this.donemTextBox1.Text = "";
+            this.donemTextBox1.TrailingIcon = null;
+            this.donemTextBox1.UseAccent = false;
+            this.donemTextBox1.UseTallSize = false;
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel4.Location = new System.Drawing.Point(672, 233);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(37, 19);
+            this.materialLabel4.TabIndex = 21;
+            this.materialLabel4.Text = "YNO:";
+            // 
+            // ynoTextBox1
+            // 
+            this.ynoTextBox1.AnimateReadOnly = false;
+            this.ynoTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ynoTextBox1.Depth = 0;
+            this.ynoTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.ynoTextBox1.LeadingIcon = null;
+            this.ynoTextBox1.Location = new System.Drawing.Point(776, 231);
+            this.ynoTextBox1.MaxLength = 50;
+            this.ynoTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.ynoTextBox1.Multiline = false;
+            this.ynoTextBox1.Name = "ynoTextBox1";
+            this.ynoTextBox1.Size = new System.Drawing.Size(208, 36);
+            this.ynoTextBox1.TabIndex = 22;
+            this.ynoTextBox1.Text = "";
+            this.ynoTextBox1.TrailingIcon = null;
+            this.ynoTextBox1.UseAccent = false;
+            this.ynoTextBox1.UseTallSize = false;
+            // 
+            // OgrenciPanel
+            // 
+            this.OgrenciPanel.Controls.Add(this.ynoTextBox1);
+            this.OgrenciPanel.Controls.Add(this.materialLabel4);
+            this.OgrenciPanel.Controls.Add(this.donemTextBox1);
+            this.OgrenciPanel.Controls.Add(this.materialLabel3);
+            this.OgrenciPanel.Controls.Add(this.danismanTextBox1);
+            this.OgrenciPanel.Controls.Add(this.materialLabel2);
+            this.OgrenciPanel.Controls.Add(this.noTextBox1);
+            this.OgrenciPanel.Controls.Add(this.materialLabel1);
+            this.OgrenciPanel.Controls.Add(this.dataGridView1);
+            this.OgrenciPanel.Location = new System.Drawing.Point(168, 101);
+            this.OgrenciPanel.Name = "OgrenciPanel";
+            this.OgrenciPanel.Size = new System.Drawing.Size(1154, 769);
+            this.OgrenciPanel.TabIndex = 23;
             // 
             // materialButton1
             // 
@@ -145,12 +207,12 @@
             this.materialButton1.Depth = 0;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(40, 818);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.Location = new System.Drawing.Point(17, 93);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(163, 64);
+            this.materialButton1.Size = new System.Drawing.Size(94, 38);
             this.materialButton1.TabIndex = 13;
             this.materialButton1.Text = "Çıkış Yap";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -160,38 +222,34 @@
             // 
             // ogrenci
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1492, 891);
+            this.ClientSize = new System.Drawing.Size(1481, 903);
+            this.Controls.Add(this.OgrenciPanel);
             this.Controls.Add(this.materialButton1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.donemTextBox);
-            this.Controls.Add(this.ynoTextBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.danismanTextBox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.noTextBox);
-            this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ogrenci";
+            this.Padding = new System.Windows.Forms.Padding(2, 41, 2, 2);
             this.Text = "Öğrenci";
             this.Load += new System.EventHandler(this.ogrenci_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.OgrenciPanel.ResumeLayout(false);
+            this.OgrenciPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox noTextBox;
-        private System.Windows.Forms.TextBox danismanTextBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox ynoTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox donemTextBox;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialTextBox noTextBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialTextBox danismanTextBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialTextBox donemTextBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialTextBox ynoTextBox1;
+        private System.Windows.Forms.Panel OgrenciPanel;
         private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

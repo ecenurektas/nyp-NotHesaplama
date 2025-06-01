@@ -23,8 +23,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public ogretmen()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, OgretmenPanel);
         }
         private string ogrGorevlisiID = "";
         private void ogretmen_Load(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    textBox1.Text=reader["AdSoyad"].ToString();
+                    materialTextBox1.Text=reader["AdSoyad"].ToString();
                     this.ogrGorevlisiID = reader["OgretimGrId"].ToString();
                 }
                 reader.Close();
@@ -137,12 +137,12 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 double ortVize = (double)toplamVize / sayac;
                 double ortFinal = (double)toplamFinal / sayac;
 
-                textBox2.Text = ("Vize Ortalaması: " + ortVize.ToString("0.00") +
+                materialTextBox2.Text = ("Vize Ortalaması: " + ortVize.ToString("0.00") +
                                 "\r\nFinal Ortalaması: " + ortFinal.ToString("0.00"));
             }
             else
             {
-                textBox2.Text = ("Ortalama hesaplanacak veri yok.");
+                materialTextBox2.Text = ("Ortalama hesaplanacak veri yok.");
             }
         }
 
@@ -197,6 +197,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 MessageBox.Show("Hata: " + ex.Message);
             }
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

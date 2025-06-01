@@ -16,26 +16,15 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
 {
     public partial class login : MaterialForm
     {
-        private readonly MaterialSkinManager materialSkinManager;
         public login()
         {
             InitializeComponent();
-
-            materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue800,     // Ana renk (arka plan)
-                Primary.Blue900,     // Daha koyu ton
-                Primary.Blue500,     // Butonlar vs.
-                Accent.LightBlue200,     // Vurgu rengi
-                TextShade.WHITE
-            );
+            DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, LoginPanel);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
         static public string loginUserID;
 
@@ -48,9 +37,9 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    if (textBox1.Text == reader["KullaniciAdi"].ToString() && textBox2.Text == reader["Sifre"].ToString())
+                    if (materialTextBox1.Text == reader["KullaniciAdi"].ToString() && materialTextBox2.Text == reader["Sifre"].ToString())
                     {
-                        if (textBox2.Text == "")
+                        if (materialTextBox2.Text == "")
                         {
                             MessageBox.Show("Şifre boş olamaz.");
                             return;
@@ -87,6 +76,16 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         {
             sifreOlustur sifreSayfa = new sifreOlustur();
             sifreSayfa.Show();
+        }
+
+        private void LoginPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void materialLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

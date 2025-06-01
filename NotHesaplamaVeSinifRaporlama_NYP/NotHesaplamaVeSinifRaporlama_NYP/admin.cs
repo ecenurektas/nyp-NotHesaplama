@@ -22,9 +22,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public admin()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
-
+            DesignManager.CenterControl(this, AdminPanel);
         }
 
         static public string adminPassword;
@@ -114,6 +113,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                         break;
                 }
             }
+        }
+
+        private void materialLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

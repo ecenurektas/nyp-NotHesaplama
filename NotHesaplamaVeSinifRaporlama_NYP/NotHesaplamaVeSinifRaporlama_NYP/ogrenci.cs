@@ -20,8 +20,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public ogrenci()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, OgrenciPanel);
         }
         private void ogrenci_Load(object sender, EventArgs e)
         {
@@ -38,9 +38,9 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
 
                     if (reader.Read())
                     {
-                        noTextBox.Text = reader["OgrenciID"].ToString();
-                        donemTextBox.Text = reader["OgrenciDonem"].ToString();
-                        ynoTextBox.Text = reader["YNO"].ToString();
+                        noTextBox1.Text = reader["OgrenciID"].ToString();
+                        donemTextBox1.Text = reader["OgrenciDonem"].ToString();
+                        ynoTextBox1.Text = reader["YNO"].ToString();
                         OgretimGrID = reader["OgretimGrID"].ToString();
                     }
                     reader.Close();
@@ -54,7 +54,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
 
                     if (reader2.Read())
                     {
-                        danismanTextBox.Text = reader2["AdSoyad"].ToString();
+                        danismanTextBox1.Text = reader2["AdSoyad"].ToString();
                     }
                     reader2.Close();
                 }
@@ -89,10 +89,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 this.Hide();
                 login.Show();
-            }
-            else
-            {
-                // Kullanıcı çıkış yapmayı reddetti, hiçbir şey yapma
             }
         }
     }

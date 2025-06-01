@@ -20,8 +20,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         public AdminOgretimGrEkle1()
         {
             InitializeComponent();
-
             DesignManager.ApplyTheme(this);
+            DesignManager.CenterControl(this, OgretimGorevlisiEklePanel);
         }
 
         private void materialButton1_Click(object sender, EventArgs e)
@@ -46,6 +46,11 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 MessageBox.Show("Hata oluştu: " + ex.Message);
             }
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
