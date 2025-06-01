@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
@@ -38,8 +39,10 @@
             this.materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
             this.OgretmenPanel = new System.Windows.Forms.Panel();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.OgretmenPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -48,7 +51,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(169, 163);
+            this.dataGridView1.Location = new System.Drawing.Point(176, 164);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
@@ -59,7 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 445);
+            this.label2.Location = new System.Drawing.Point(273, 443);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 16);
@@ -147,6 +150,7 @@
             this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.materialTextBox1.Multiline = false;
             this.materialTextBox1.Name = "materialTextBox1";
+            this.materialTextBox1.ReadOnly = true;
             this.materialTextBox1.Size = new System.Drawing.Size(207, 36);
             this.materialTextBox1.TabIndex = 13;
             this.materialTextBox1.Text = "";
@@ -173,12 +177,12 @@
             this.materialTextBox2.Depth = 0;
             this.materialTextBox2.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialTextBox2.LeadingIcon = null;
-            this.materialTextBox2.Location = new System.Drawing.Point(458, 443);
+            this.materialTextBox2.Location = new System.Drawing.Point(421, 441);
             this.materialTextBox2.MaxLength = 50;
             this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox2.Multiline = false;
             this.materialTextBox2.Name = "materialTextBox2";
-            this.materialTextBox2.Size = new System.Drawing.Size(178, 36);
+            this.materialTextBox2.ReadOnly = true;
+            this.materialTextBox2.Size = new System.Drawing.Size(334, 36);
             this.materialTextBox2.TabIndex = 15;
             this.materialTextBox2.Text = "";
             this.materialTextBox2.TrailingIcon = null;
@@ -239,6 +243,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.OgretmenPanel.ResumeLayout(false);
             this.OgretmenPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,5 +259,6 @@
         private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
         private System.Windows.Forms.Panel OgretmenPanel;
         private MaterialSkin.Controls.MaterialButton materialButton3;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

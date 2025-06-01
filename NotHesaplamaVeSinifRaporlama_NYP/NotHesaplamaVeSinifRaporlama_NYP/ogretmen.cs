@@ -40,12 +40,12 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    materialTextBox1.Text=reader["AdSoyad"].ToString();
+                    materialTextBox1.Text = reader["AdSoyad"].ToString();
                     this.ogrGorevlisiID = reader["OgretimGrId"].ToString();
                 }
                 reader.Close();
 
-                SqlCommand cmd2 = new SqlCommand("SELECT * FROM OgretimGorevlisiDersleri WHERE OgretimGrID="+this.ogrGorevlisiID, Database.Connection);
+                SqlCommand cmd2 = new SqlCommand("SELECT * FROM OgretimGorevlisiDersleri WHERE OgretimGrID=" + this.ogrGorevlisiID, Database.Connection);
                 SqlDataReader reader2 = cmd2.ExecuteReader();
                 while (reader2.Read())
                 {
@@ -68,6 +68,17 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             {
                 if (!row.IsNewRow)
                 {
+                    object vizeObj = row.Cells["Vize"].Value;
+                    object finalObj = row.Cells["Final"].Value;
+
+                    if (vizeObj == DBNull.Value || finalObj == DBNull.Value ||
+                        vizeObj == null || finalObj == null ||
+                        string.IsNullOrWhiteSpace(vizeObj.ToString()) ||
+                        string.IsNullOrWhiteSpace(finalObj.ToString()))
+                    {
+                        row.Cells["HarfNotu"].Value = DBNull.Value;
+                        continue;
+                    }
                     double vize = Convert.ToDouble(row.Cells["Vize"].Value);
                     double final = Convert.ToDouble(row.Cells["Final"].Value);
                     double ortalama = vize * 0.4 + final * 0.6;
@@ -137,8 +148,8 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 double ortVize = (double)toplamVize / sayac;
                 double ortFinal = (double)toplamFinal / sayac;
 
-                materialTextBox2.Text = ("Vize Ortalaması: " + ortVize.ToString("0.00") +
-                                "\r\nFinal Ortalaması: " + ortFinal.ToString("0.00"));
+                materialTextBox2.Text = ("Vize: " + ortVize.ToString("0.00") +
+                                " Final: " + ortFinal.ToString("0.00"));
             }
             else
             {
