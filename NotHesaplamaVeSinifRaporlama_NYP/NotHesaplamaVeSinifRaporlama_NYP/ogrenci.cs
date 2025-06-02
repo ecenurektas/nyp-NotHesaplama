@@ -39,7 +39,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                     {
                         continue;
                     }
-                    materialTextBox1.Text+=gecerliNotSayisi.ToString() + " - " + harfNotuObj.ToString() + "\n";
                     string harfNotu = harfNotuObj.ToString();
                     double notDegeri = 0.0;
 
@@ -76,7 +75,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             DesignManager.StyleDataGridView(dataGridView1);
             string ogrenciID = login.loginUserID.ToString();
             string OgretimGrID = "";
-            ortalamaHesapla();
             try
             {
                 using (SqlCommand command = new SqlCommand("SELECT * FROM Ogrenci WHERE OgrenciID = @ogrenciID", Database.Connection))
@@ -122,6 +120,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                     adapter.Fill(dt);
                     dataGridView1.DataSource = dt;
                 }
+                ortalamaHesapla();
             }
             catch (Exception ex)
             {

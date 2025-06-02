@@ -183,7 +183,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 dataGridView1.Columns["Final"].ReadOnly = false;
                 dataGridView1.Columns["OgrenciID"].ReadOnly = true;
                 dataGridView1.Columns["DersID"].ReadOnly = true;
-                dataGridView1.Columns["HarfNotu"].ReadOnly = true;
+                dataGridView1.Columns["HarfNotu"].ReadOnly = false;
                 harfNotuHesapla();
                 this.vizeFinalOrt();
             }
@@ -202,7 +202,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
                 this.adapter.Update(this.tablo);
                 MessageBox.Show("Değişiklikler kaydedildi.");
-
             }
             catch (Exception ex)
             {
