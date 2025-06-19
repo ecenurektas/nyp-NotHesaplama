@@ -34,7 +34,6 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
             materialComboBox1.SelectedIndex = 0;
             try
             {
-
                 SqlCommand cmd = new SqlCommand("SELECT * FROM OgretimGorevlisi WHERE KullaniciAdi = @kadi", Database.Connection);
                 cmd.Parameters.AddWithValue("@kadi", kullaniciAdi);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -62,9 +61,78 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         private string secilen = "";
         private SqlDataAdapter adapter;
         private DataTable tablo;
-        private void harfNotuHesapla()
+
+        private void materialButton1_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            try
+            {
+                SqlCommand cmd1 = new SqlCommand("SELECT * FROM Dersler WHERE DersID = @ad", Database.Connection);
+                cmd1.Parameters.AddWithValue("@ad", materialComboBox1.SelectedItem.ToString());
+                SqlDataReader reader1 = cmd1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    this.secilen = reader1["DersID"].ToString();
+                }
+                reader1.Close();
+                if (Database.Connection.State != ConnectionState.Open)
+                    Database.Connection.Open();
+                SqlCommand komut = new SqlCommand("SELECT * FROM Notlar WHERE DersID = @id", Database.Connection);
+                komut.Parameters.AddWithValue("@id", this.secilen);
+
+                this.adapter = new SqlDataAdapter(komut);
+                this.tablo = new DataTable();
+                adapter.Fill(tablo);
+                dataGridView1.DataSource = tablo;
+                dataGridView1.ReadOnly = false;
+                dataGridView1.Columns["Vize"].ReadOnly = false;
+                dataGridView1.Columns["Final"].ReadOnly = false;
+                dataGridView1.Columns["OgrenciID"].ReadOnly = true;
+                dataGridView1.Columns["DersID"].ReadOnly = true;
+                dataGridView1.Columns["HarfNotu"].ReadOnly = true;
+                vizeFinalOrtalamaHesapla hesap1 = new vizeFinalOrtalamaHesapla();
+                hesap1.hesapla(dataGridView1, materialTextBox2);
+                harfNotuHesaplama hesap2 = new harfNotuHesaplama();
+                hesap2.hesapla(dataGridView1, materialTextBox2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                vizeFinalOrtalamaHesapla hesap1 = new vizeFinalOrtalamaHesapla();
+                hesap1.hesapla(dataGridView1, materialTextBox2);
+                harfNotuHesaplama hesap2 = new harfNotuHesaplama();
+                hesap2.hesapla(dataGridView1,materialTextBox2);
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                this.adapter.Update(this.tablo);
+                MessageBox.Show("Değişiklikler kaydedildi.");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+    }
+    public abstract class hesap
+    {
+        public abstract void hesapla(DataGridView datagrid,MaterialTextBox textbox);
+    }
+    public class harfNotuHesaplama : hesap
+    {
+        public override void hesapla(DataGridView datagrid, MaterialTextBox textbox)
+        {
+            foreach (DataGridViewRow row in datagrid.Rows)
             {
                 if (!row.IsNewRow)
                 {
@@ -121,13 +189,16 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 }
             }
         }
-        private void vizeFinalOrt()
+    }
+    public class vizeFinalOrtalamaHesapla : hesap
+    {
+        public override void hesapla(DataGridView datagrid, MaterialTextBox textbox)
         {
             int toplamVize = 0;
             int toplamFinal = 0;
             int sayac = 0;
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in datagrid.Rows)
             {
                 if (row.IsNewRow) continue;
                 int vize, final;
@@ -148,70 +219,13 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
                 double ortVize = (double)toplamVize / sayac;
                 double ortFinal = (double)toplamFinal / sayac;
 
-                materialTextBox2.Text = ("Vize: " + ortVize.ToString("0.00") +
+                textbox.Text = ("Vize: " + ortVize.ToString("0.00") +
                                 " Final: " + ortFinal.ToString("0.00"));
             }
             else
             {
-                materialTextBox2.Text = ("Ortalama hesaplanacak veri yok.");
+                textbox.Text = ("Ortalama hesaplanacak veri yok.");
             }
-        }
-
-        private void materialButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlCommand cmd1 = new SqlCommand("SELECT * FROM Dersler WHERE DersID = @ad", Database.Connection);
-                cmd1.Parameters.AddWithValue("@ad", materialComboBox1.SelectedItem.ToString());
-                SqlDataReader reader1 = cmd1.ExecuteReader();
-                while (reader1.Read())
-                {
-                    this.secilen = reader1["DersID"].ToString();
-                }
-                reader1.Close();
-                if (Database.Connection.State != ConnectionState.Open)
-                    Database.Connection.Open();
-                SqlCommand komut = new SqlCommand("SELECT * FROM Notlar WHERE DersID = @id", Database.Connection);
-                komut.Parameters.AddWithValue("@id", this.secilen);
-
-                this.adapter = new SqlDataAdapter(komut);
-                this.tablo = new DataTable();
-                adapter.Fill(tablo);
-                dataGridView1.DataSource = tablo;
-                dataGridView1.ReadOnly = false;
-                dataGridView1.Columns["Vize"].ReadOnly = false;
-                dataGridView1.Columns["Final"].ReadOnly = false;
-                dataGridView1.Columns["OgrenciID"].ReadOnly = true;
-                dataGridView1.Columns["DersID"].ReadOnly = true;
-                dataGridView1.Columns["HarfNotu"].ReadOnly = false;
-                harfNotuHesapla();
-                this.vizeFinalOrt();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hata: " + ex.Message);
-            }
-        }
-
-        private void materialButton2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.vizeFinalOrt();
-                harfNotuHesapla();
-                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-                this.adapter.Update(this.tablo);
-                MessageBox.Show("Değişiklikler kaydedildi.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hata: " + ex.Message);
-            }
-        }
-
-        private void materialButton3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
     }
 }

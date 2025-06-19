@@ -26,7 +26,7 @@ namespace NotHesaplamaVeSinifRaporlama_NYP
         private void Form1_Load(object sender, EventArgs e)
         {
         }
-        static public string loginUserID;
+        static public string loginUserID { get; private set; }
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
